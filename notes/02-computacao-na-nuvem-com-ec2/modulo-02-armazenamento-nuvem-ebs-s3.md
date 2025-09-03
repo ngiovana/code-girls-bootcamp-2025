@@ -18,7 +18,10 @@
 
 ## 🗄️ S3 (Simple Storage Service)  
 - Armazenamento de **objetos** (arquivos, imagens, vídeos, backups, etc).  
-- Altamente escalável, seguro e durável (11 9s de durabilidade).  
+- Altamente escalável, seguro e durável (**11 9s de durabilidade**, ou seja, **99,999999999% ao ano**).  
+- O que isso significa na prática: se você armazenar **10 milhões de objetos**, pode esperar perder **um único objeto a cada 10.000 anos**.  
+- Essa alta durabilidade é possível porque o S3 mantém cópias redundantes dos dados em **múltiplos dispositivos e zonas de disponibilidade (AZs)**.  
+
 - **Classes de armazenamento** para otimização de custo:  
   - **S3 Standard** → uso frequente  
   - **S3 Standard-IA** → acesso infrequente, mas alta disponibilidade  
@@ -38,3 +41,14 @@
 ## 📊 Comparação rápida
 - **EBS** → armazenamento em blocos, anexado a instâncias EC2, ideal para dados de uso intensivo e persistente.  
 - **S3** → armazenamento de objetos, ideal para grandes volumes de dados e acessos variados.  
+
+---
+
+## 📑 Comparação entre EBS, S3 e EFS
+
+| Serviço | Tipo de Armazenamento | Caso de Uso Principal | Características |
+|---------|------------------------|-----------------------|-----------------|
+| **EBS** | Blocos | Bancos de dados, logs, apps que exigem baixa latência | Persistente, deve estar na mesma AZ da instância EC2, snapshots para backup |
+| **S3**  | Objetos | Arquivos, mídias, backups, data lakes | Alta durabilidade (11 9s), várias classes de storage, ciclo de vida para otimização de custo |
+| **EFS** | Arquivos | Compartilhamento de arquivos entre múltiplas instâncias EC2 | Sistema de arquivos elástico, gerenciado, escalável automaticamente, acessível em várias AZs |
+
